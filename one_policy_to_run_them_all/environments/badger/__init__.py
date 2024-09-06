@@ -1,0 +1,8 @@
+from rl_x.environments.environment_manager import extract_environment_name_from_file, register_environment
+from one_policy_to_run_them_all.environments.badger.create_env import create_env
+from one_policy_to_run_them_all.environments.badger.default_config import get_config
+from one_policy_to_run_them_all.environments.badger.general_properties import GeneralProperties
+
+
+BADGER = extract_environment_name_from_file(__file__)
+register_environment(BADGER, get_config, create_env, GeneralProperties)

@@ -1,0 +1,8 @@
+from rl_x.environments.environment_manager import extract_environment_name_from_file, register_environment
+from one_policy_to_run_them_all.environments.hexapod.create_env import create_env
+from one_policy_to_run_them_all.environments.hexapod.default_config import get_config
+from one_policy_to_run_them_all.environments.hexapod.general_properties import GeneralProperties
+
+
+HEXAPOD = extract_environment_name_from_file(__file__)
+register_environment(HEXAPOD, get_config, create_env, GeneralProperties)

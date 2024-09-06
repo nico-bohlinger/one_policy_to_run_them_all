@@ -1,0 +1,13 @@
+*.egg-info
+__pycache__/
+.DS_Store
+.vscode
+.idea
+logs/
+wandb/
+commands.txt
+multi_render.txt
+runs/
+experiments/*.sh
+!experiments/experiment.sh
+!experiments/test.sh

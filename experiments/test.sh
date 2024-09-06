@@ -1,0 +1,12 @@
+python experiment.py \
+    --algorithm.name=uni_ppo.ppo \
+    --environment.name="multi_robot" \
+    --runner.track_console=True \
+    --runner.load_model=model_best_jax \
+    --algorithm.determine_fastest_cpu_for_gpu=False \
+    --runner.mode=test \
+    --environment.mode=test \
+    --environment.add_goal_arrow=True \
+    --environment.nr_envs=16 \
+    --environment.multi_render=True \
+    --environment.render=False

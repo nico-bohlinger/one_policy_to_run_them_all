@@ -1,0 +1,210 @@
+<mujoco model="hexapod">
+  <compiler angle="radian" meshdir="meshes" autolimits="true" balanceinertia="true"/>
+
+  <option cone="pyramidal" impratio="100"/>
+
+  <statistic meansize="0.0964651"/>
+
+  <default>
+    <geom solref="-1000 -80"/>
+    <joint damping="0.1" armature="0.01" frictionloss="0.03"/>
+  </default>
+
+  <asset>
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".12 .14 .44" rgb2=".37 .55 1" width="100" height="100"/>
+    <material name="MatPlane" reflectance="0.5" texture="texplane" texrepeat="1 1" texuniform="true"></material>
+
+    <mesh name="base" file="base.stl"/>
+    <mesh name="motor" file="motor.stl"/>
+    <mesh name="leg_0_left" file="leg_0_left.stl"/>
+    <mesh name="leg_1" file="leg_1.stl"/>
+    <mesh name="leg_2_left" file="leg_2_left.stl"/>
+    <mesh name="leg_0_right" file="leg_0_right.stl"/>
+    <mesh name="leg_2_right" file="leg_2_right.stl"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" pos="0 0 0" condim="3" material="MatPlane" size="100 100 0.125" rgba="0.8 0.9 0.8 1" type="plane"/>
+    <light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1" pos="0 0 1.3" specular=".1 .1 .1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="trunk" pos="0 -1 2"/>
+
+    <body name="trunk" pos="0 0 0">
+      <camera name="track" mode="trackcom" pos="0 -2 0" xyaxes="1 0 0 0 0 1"/>
+      <freejoint/>
+
+      <inertial mass="0.53699" pos="0.00372 0.0 0.001" diaginertia="0.01109 0.00244 0.00355"/>
+
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base"/>
+      <geom name="trunk_1" type="mesh" mesh="base"/>
+      <geom pos="0.08 0.043 0.005" quat="0 0.707107 0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_2" pos="0.08 0.043 0.005" quat="0 0.707107 0.707107 0" type="mesh" mesh="motor"/>
+      <geom pos="0.08 -0.043 0.005" quat="0 0.707107 -0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_3" pos="0.08 -0.043 0.005" quat="0 0.707107 -0.707107 0" type="mesh" mesh="motor"/>
+      <geom pos="0 0.06 0.005" quat="0 0.707107 0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_4" pos="0 0.06 0.005" quat="0 0.707107 0.707107 0" type="mesh" mesh="motor"/>
+      <geom pos="0 -0.06 0.005" quat="0 0.707107 -0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_5" pos="0 -0.06 0.005" quat="0 0.707107 -0.707107 0" type="mesh" mesh="motor"/>
+      <geom pos="-0.08 0.043 0.005" quat="0 0.707107 0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_6" pos="-0.08 0.043 0.005" quat="0 0.707107 0.707107 0" type="mesh" mesh="motor"/>
+      <geom pos="-0.08 -0.043 0.005" quat="0 0.707107 -0.707107 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+      <geom name="trunk_7" pos="-0.08 -0.043 0.005" quat="0 0.707107 -0.707107 0" type="mesh" mesh="motor"/>
+      <body name="leg_0_link_0" pos="0.08 0.058 -0.014" quat="0.707107 0 0 0.707107">
+        <inertial pos="0.0425743 0.00175467 -0.0105243" quat="0.49494 0.822967 0.238968 0.143717" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_0_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_left"/>
+        <geom name="hip_0" type="mesh" mesh="leg_0_left"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_0_link_1" pos="0.062 -0.032 -0.01375" quat="0.707107 0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_0_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_0" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_0_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 -0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_0_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_left"/>
+            <geom name="foot_0" type="mesh" mesh="leg_2_left"/>
+          </body>
+        </body>
+      </body>
+      <body name="leg_1_link_0" pos="0.08 -0.058 -0.014" quat="0.707107 0 0 -0.707107">
+        <inertial pos="0.0425743 -0.00175467 -0.0105243" quat="0.822967 0.49494 -0.143717 -0.238968" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_1_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_right"/>
+        <geom name="hip_1" type="mesh" mesh="leg_0_right"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_1_link_1" pos="0.062 0.032 -0.01375" quat="0.707107 -0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_1_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_1" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_1_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_1_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_right"/>
+            <geom name="foot_1" type="mesh" mesh="leg_2_right"/>
+          </body>
+        </body>
+      </body>
+      <body name="leg_2_link_0" pos="0 0.075 -0.014" quat="0.707107 0 0 0.707107">
+        <inertial pos="0.0425743 0.00175467 -0.0105243" quat="0.49494 0.822967 0.238968 0.143717" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_2_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_left"/>
+        <geom name="hip_2" type="mesh" mesh="leg_0_left"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_2_link_1" pos="0.062 -0.032 -0.01375" quat="0.707107 0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_2_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_2" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_2_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 -0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_2_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_left"/>
+            <geom name="foot_2" type="mesh" mesh="leg_2_left"/>
+          </body>
+        </body>
+      </body>
+      <body name="leg_3_link_0" pos="0 -0.075 -0.014" quat="0.707107 0 0 -0.707107">
+        <inertial pos="0.0425743 -0.00175467 -0.0105243" quat="0.822967 0.49494 -0.143717 -0.238968" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_3_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_right"/>
+        <geom name="hip_3" type="mesh" mesh="leg_0_right"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_3_link_1" pos="0.062 0.032 -0.01375" quat="0.707107 -0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_3_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_3" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_3_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_3_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_right"/>
+            <geom name="foot_3" type="mesh" mesh="leg_2_right"/>
+          </body>
+        </body>
+      </body>
+      <body name="leg_4_link_0" pos="-0.08 0.058 -0.014" quat="0.707107 0 0 0.707107">
+        <inertial pos="0.0425743 0.00175467 -0.0105243" quat="0.49494 0.822967 0.238968 0.143717" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_4_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_left"/>
+        <geom name="hip_4" type="mesh" mesh="leg_0_left"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 -0.01225 -0.0145" quat="0.707107 0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_4_link_1" pos="0.062 -0.032 -0.01375" quat="0.707107 0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_4_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_4" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_4_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 -0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_4_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_left"/>
+            <geom name="foot_4" type="mesh" mesh="leg_2_left"/>
+          </body>
+        </body>
+      </body>
+      <body name="leg_5_link_0" pos="-0.08 -0.058 -0.014" quat="0.707107 0 0 -0.707107">
+        <inertial pos="0.0425743 -0.00175467 -0.0105243" quat="0.822967 0.49494 -0.143717 -0.238968" mass="0.098061" diaginertia="0.0110094 0.0110094 0.011"/>
+        <joint name="leg_5_joint_0" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_0_right"/>
+        <geom name="hip_5" type="mesh" mesh="leg_0_right"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+        <geom pos="0.0465 0.01225 -0.0145" quat="0.707107 -0.707107 0 0" type="mesh" mesh="motor"/>
+        <body name="leg_5_link_1" pos="0.062 0.032 -0.01375" quat="0.707107 -0.707107 0 0">
+          <inertial pos="0.0960139 0 -0.00664375" quat="0.446769 0.548086 0.548086 0.446769" mass="0.08807" diaginertia="0.0110678 0.0110678 0.011"/>
+          <joint name="leg_5_joint_1" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_1"/>
+          <geom type="mesh" mesh="leg_1"/>
+          <geom pos="0.1165 0 -0.0032" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="motor"/>
+          <geom name="knee_5" pos="0.1165 0 -0.0032" type="mesh" mesh="motor"/>
+          <body name="leg_5_link_2" pos="0.132 0 0.0165">
+            <inertial pos="0.08534 0.00854 0.00075" mass="0.0467" diaginertia="0.01 0.01 0.01"/>
+            <joint name="leg_5_joint_2" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="leg_2_right"/>
+            <geom name="foot_5" type="mesh" mesh="leg_2_right"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="leg_0_joint_0" joint="leg_0_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_0_joint_1" joint="leg_0_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_0_joint_2" joint="leg_0_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_1_joint_0" joint="leg_1_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_1_joint_1" joint="leg_1_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_1_joint_2" joint="leg_1_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_2_joint_0" joint="leg_2_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_2_joint_1" joint="leg_2_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_2_joint_2" joint="leg_2_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_3_joint_0" joint="leg_3_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_3_joint_1" joint="leg_3_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_3_joint_2" joint="leg_3_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_4_joint_0" joint="leg_4_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_4_joint_1" joint="leg_4_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_4_joint_2" joint="leg_4_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_5_joint_0" joint="leg_5_joint_0" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_5_joint_1" joint="leg_5_joint_1" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+    <motor name="leg_5_joint_2" joint="leg_5_joint_2" ctrllimited="true" ctrlrange="-1.96133 1.96133"></motor>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0.161 1 0 0 0 -0.7 0.6 -2.0 0.7 -0.6 2.0 0.0 0.6 -2.0 0.0 -0.6 2.0 0.7 0.6 -2.0 -0.7 -0.6 2.0"/>
+  </keyframe>
+</mujoco>
