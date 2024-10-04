@@ -3,7 +3,7 @@
 This repository provides the implementation for the paper:
 
 <td style="padding:20px;width:75%;vertical-align:middle">
-      <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/NicoBohlinger/one_policy_to_run_them_all.pdf" target="_blank">
+      <a href="https://nico-bohlinger.github.io/one_policy_to_run_them_all_website/" target="_blank">
       <b> One Policy to Run Them All: an End-to-end Learning Approach to Multi-Embodiment Locomotion </b>
       </a>
       <br>
@@ -11,8 +11,9 @@ This repository provides the implementation for the paper:
       <br>
       <em>Conference on Robot Learning</em>, 2024
       <br>
-      <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/NicoBohlinger/one_policy_to_run_them_all.pdf">paper</a> /
-      <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/NicoBohlinger/one_policy_to_run_them_all.pdf" target="_blank">project page</a>
+      <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/NicoBohlinger/one_policy_to_run_them_all.pdf">Paper</a> /
+      <a href="https://nico-bohlinger.github.io/one_policy_to_run_them_all_website/" target="_blank">Project page</a> /
+      <a href="https://youtu.be/BbbBAH-T7-Q" target="_blank">Video</a>
     <br>
 </td>
 
