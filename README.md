@@ -55,16 +55,26 @@ sbatch experiment.sh
 
 
 ## Testing a trained model
-1. Move the trained model to the experiments folder
+1. Move the trained model to the experiments folder or use the ```pre_trained_model``` file
 2. Run the following commands to test a trained model
 ```bash
 cd one_policy_to_run_them_all/experiments
-sbatch test.sh
+bash test.sh
 ```
 #### Controlling the robots
 Either modify the commands.txt file, where the values are target x, y and yaw velocities, or connect a **Xbox 360** controller and control the target x,y velocity with the left joystick and the yaw velocity with the right joystick.
 
 To switch the robot, either change the robot id in the multi_render.txt file or press the LB and RB button on the controller.
+
+## Adding a new robot
+1. Copy an existing robot folder in the ```one_policy_to_run_them_all/environments``` directory
+2. Change the name of the folder and all imports in the files
+3. Update the XML and meshes in the ```data``` folder
+4. In the environment.py adjust the following variables: LONG_NAME, SHORT_NAME, nominal_joint_positions, max_joint_velocities, initial_drop_height, collision_groups, foot_names, joint_names, joint_nr_direct_child_joints and the joints_masks if present / needed (see Cassie robot environment)
+5. Adjust the reward coefficients and curriculum_steps in ```reward_functions/rudin_own_var.py```
+6. Adjust the controller gains and scaling_factor in ```control_functions/rudin2022.py```
+7. Adjust the foot geom indices in ```domain_randomization/mujoco_model_functions/default.py``` and ```domain_randomization/seen_robot_functions/default.py```
+8. Adjust the domain randomization ranges in the ```domain_randomization``` folder
 
 ## Citation
 If you use or refer to this repository in your research, please cite:

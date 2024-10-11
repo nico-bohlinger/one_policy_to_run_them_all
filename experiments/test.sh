@@ -2,7 +2,7 @@ python experiment.py \
     --algorithm.name=uni_ppo.ppo \
     --environment.name="multi_robot" \
     --runner.track_console=True \
-    --runner.load_model=model_best_jax \
+    --runner.load_model=pre_trained_model \
     --algorithm.determine_fastest_cpu_for_gpu=False \
     --runner.mode=test \
     --environment.mode=test \
