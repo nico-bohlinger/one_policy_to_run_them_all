@@ -5,6 +5,8 @@ __pycache__/
 .idea
 logs/
 wandb/
+commands.txt
+multi_render.txt
 runs/
 experiments/*.sh
 !experiments/experiment.sh
