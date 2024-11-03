@@ -1,15 +1,24 @@
+import os
 from copy import deepcopy
 import numpy as np
 import gymnasium as gym
 
 
 class MultiSingleVectorEnv(gym.vector.SyncVectorEnv):
-    def __init__(self, env_fns, observation_space=None, action_space=None, copy=True):
+    def __init__(self, env_fns, observation_space=None, action_space=None, copy=True, nr_envs=1, file_name="multi_render.txt"):
         super().__init__(env_fns, observation_space, action_space, copy)
+        self.nr_envs = len(env_fns)
+        self.file_name = file_name
+        self.active_env_id = self.get_env_to_render()
 
-        self.active_env_id = 0
 
-
+    def get_env_to_render(self):
+        if os.path.isfile(self.file_name):
+            with open(self.file_name, "r") as f:
+                env_to_render = f.read()
+            return min(int(env_to_render), self.nr_envs-1)
+        return 0
+    
     def step_async(self, action):
         self.action = action[0]
 
