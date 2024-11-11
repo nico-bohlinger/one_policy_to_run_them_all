@@ -56,6 +56,7 @@ class MultiRenderWrapper(gym.Wrapper):
 
         self.env_to_render = 0
         self.env_to_render = self.get_env_to_render()
+        env.active_env_id = self.env_to_render
         model = env.call("model")[self.env_to_render]
         dt = env.call("dt")[self.env_to_render]
         self.viewer = MujocoViewer(model, dt)
