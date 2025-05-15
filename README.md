@@ -30,6 +30,7 @@ conda create -n one_policy_to_run_them_all python=3.11.4
 conda activate one_policy_to_run_them_all
 git clone git@github.com:nico-bohlinger/RL-X.git
 cd RL-X
+git checkout 70e220ac7eaf7b14ff4e0660227185a4628791b4
 pip install -e .[all] --config-settings editable_mode=compat
 pip uninstall $(pip freeze | grep -i '\-cu12' | cut -d '=' -f 1) -y
 pip install "torch==2.2.1" --index-url https://download.pytorch.org/whl/cu118 --upgrade
